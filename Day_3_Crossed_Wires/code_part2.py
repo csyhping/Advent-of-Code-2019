@@ -1,6 +1,6 @@
 import numpy as np 
 #------part 1------#
-wires = np.loadtxt('case1.txt', dtype = str)
+wires = np.loadtxt('input.txt', dtype = str)
 wire1 = wires[0].split(',')
 wire2 = wires[1].split(',')
 
@@ -157,7 +157,7 @@ for order in wire1:
 				if (act_row, act_col) in d_intersection:
 					continue
 				else:
-					d_intersection[act_row, act_col] = steps + pos[0][k] + 1
+					d_intersection[act_row, act_col] = steps + int(order[1:]) - pos[0][k]
 		steps += int(order[1:])
 		c_col = to_col
 	elif order[0] == 'U':
@@ -174,7 +174,7 @@ for order in wire1:
 				if (act_row, act_col) in d_intersection:
 					continue
 				else:
-					d_intersection[act_row, act_col] = steps + pos[0][k] + 1
+					d_intersection[act_row, act_col] = steps + int(order[1:]) - pos[0][k]
 		steps += int(order[1:])
 		c_row = to_row
 	elif order[0] == 'D':
@@ -231,7 +231,7 @@ for order in wire2:
 				if (act_row, act_col) in count_d:
 					continue
 				else:
-					d_intersection[act_row, act_col] += steps + pos[0][k] + 1
+					d_intersection[act_row, act_col] += steps + int(order[1:]) - pos[0][k]
 					count_d[act_row, act_col] = 1
 		steps += int(order[1:])
 		c_col = to_col
@@ -251,7 +251,7 @@ for order in wire2:
 				if (act_row, act_col) in count_d:
 					continue
 				else:
-					d_intersection[act_row, act_col] += steps + pos[0][k] + 1
+					d_intersection[act_row, act_col] += steps + int(order[1:]) - pos[0][k]
 					count_d[act_row, act_col] = 1
 		steps += int(order[1:])
 		c_row = to_row
