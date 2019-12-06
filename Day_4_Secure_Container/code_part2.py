@@ -17,7 +17,7 @@ def check_num(n1, n2, length):
 		# check double
 		dict_count = {}
 		d_count = 1
-		flag = 0
+		# flag = 0
 		if valid == length - 1:
 			for i in range(length - 1):
 				if str_num[i] == str_num[i + 1]:
@@ -31,15 +31,19 @@ def check_num(n1, n2, length):
 						dict_count[str_num[i]] = d_count
 						d_count = 1
 			valid = 0
-		if len(dict_count.keys()) != 0:
-			for value in dict_count.values():
-				if value % 2 != 0:
-					flag = 1
-					break
-			if flag == 0:
+		if 2 in dict_count.values():
 				count += 1
 				print(num)
 				# print(dict_count)	
+		# if len(dict_count.keys()) != 0:
+		# 	for value in dict_count.values():
+		# 		if value % 2 != 0:
+		# 			flag = 1
+		# 			break
+		# 	if flag == 0:
+		# 		count += 1
+		# 		print(num)
+		# 		# print(dict_count)	
 
 	return count
 

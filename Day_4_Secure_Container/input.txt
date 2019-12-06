@@ -1,8 +1,7 @@
 193651-649729 
 
-Analysis:
-19xxxx: 1-199999
+NOTE:
 
-Then:
-193651-649729 ==> 222222-599999
+As for part 2, the only extra limits is that there should be a 2-adjacent-digits 
+eg, 122333 is valid actually, previously I though the adjcent length can only be 2/4/6 
 
