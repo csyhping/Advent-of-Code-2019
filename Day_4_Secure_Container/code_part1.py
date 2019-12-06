@@ -19,6 +19,8 @@ def check_num(n1, n2, length):
 			for i in range(length - 1):
 				if str_num[i] == str_num[i + 1]:
 					count += 1
+					print(num)
+
 					valid = 0
 					break
 			valid = 0
