@@ -1,6 +1,7 @@
 import numpy as np 
 
 #------part 2------#
+
 def check_num(n1, n2, length):
 	print(n1, n2, length)
 	valid, count= 0, 0

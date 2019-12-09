@@ -1,9 +1,10 @@
 import numpy as np  
+import time 
 
 def unittest(inputs, instruction, program, pos):
 	if instruction == 1:
 		# sum
-		# print('instruction mode = 1, sum')
+		print('instruction mode = 1, sum')
 		s1, s2, pm = program[program[pos + 1]], program[program[pos + 2]], program[pos + 3]
 		ssum = s1 + s2
 		program[pm] = ssum
@@ -11,7 +12,7 @@ def unittest(inputs, instruction, program, pos):
 		# print(s1, s2, ssum)
 	elif instruction == 2:
 		# multi
-		# print('instruction mode = 2, multi')
+		print('instruction mode = 2, multi')
 		m1, m2, pm = program[program[pos + 1]], program[program[pos + 2]], program[pos + 3]
 		multi = m1 * m2
 		program[pm] = multi
@@ -19,41 +20,45 @@ def unittest(inputs, instruction, program, pos):
 		# print(m1, m2, multi)
 	elif instruction == 3:
 		# take input
-		# print('instruction mode = 3, take input')
+		print('instruction mode = 3, take input')
 		pm = program[pos + 1]
 		program[pm] = inputs
 		pos += 2
 	elif instruction == 4:
 		# output
-		# print('instruction mode = 4, output')
+		print('instruction mode = 4, output')
 		pm = program[pos + 1]
 		print('output = ', program[pm])
 		pos += 2
 	elif instruction == 5:
+		print('instruction mode = 5, jump if true')
 		# jump if true
 		j1, j2= program[program[pos + 1]], program[program[pos + 2]]
 		if j1 != 0:
 			pos = j2
 		else:
-			pos += 2
+			pos += 3
 	elif instruction == 6:
+		print('instruction mode = 6, jump if false')
 		# jump if false
 		j1, j2= program[program[pos + 1]], program[program[pos + 2]]
 		if j1 == 0:
 			pos = j2
 		else:
-			pos += 2
+			pos += 3
 	elif instruction == 7:
+		print('instruction mode = 7, less than')
 		# less than
-		j1, j2, pm = program[program[pos + 1]], program[program[pos + 2]], program[program[pos + 3]]
+		j1, j2, pm = program[program[pos + 1]], program[program[pos + 2]], program[pos + 3]
 		if j1 < j2:
 			program[pm] = 1
 		else:
 			program[pm] = 0
 		pos += 4
 	elif instruction == 8:
+		print('instruction mode = 8, equals')
 		# equals
-		j1, j2, pm = program[program[pos + 1]], program[program[pos + 2]], program[program[pos + 3]]
+		j1, j2, pm = program[program[pos + 1]], program[program[pos + 2]], program[pos + 3]
 		if j1 == j2:
 			program[pm] = 1
 		else:
@@ -98,32 +103,44 @@ def unittest(inputs, instruction, program, pos):
 			print('output = ', outputs)
 			pos += 2
 		elif ins == 5:
-			pm_1, pm_2= program[program[pos + 1]], program[program[pos + 2]]
+			pm_1, pm_2= program[pos + 1], program[pos + 2]
 			j1 = decode_pm(pm_code_1, program, pm_1)
 			j2 = decode_pm(pm_code_2, program, pm_2)
 			if j1 != 0:
 				pos = j2
 			else:
-				pos += 2
+				pos += 3
 		elif ins == 6:
-			pm_1, pm_2= program[program[pos + 1]], program[program[pos + 2]]
+			pm_1, pm_2= program[pos + 1], program[pos + 2]
 			j1 = decode_pm(pm_code_1, program, pm_1)
 			j2 = decode_pm(pm_code_2, program, pm_2)
 			if j1 == 0:
 				pos = j2
 			else:
-				pos += 2
+				pos += 3
 		elif ins == 7:
-			pm_1, pm_2, pm = program[program[pos + 1]], program[program[pos + 2]], program[program[pos + 3]]
-			
+			pm_1, pm_2, pm = program[pos + 1], program[pos + 2], program[pos + 3]
+			j1 = decode_pm(pm_code_1, program, pm_1)
+			j2 = decode_pm(pm_code_2, program, pm_2)
+			if j1 < j2:
+				program[pm] = 1
+			else:
+				program[pm] = 0
+			pos += 4
 		elif ins == 8:
-			pm_1, pm_2, pm = program[program[pos + 1]], program[program[pos + 2]], program[program[pos + 3]]
-			
-
+			pm_1, pm_2, pm = program[pos + 1], program[pos + 2], program[pos + 3]
+			j1 = decode_pm(pm_code_1, program, pm_1)
+			j2 = decode_pm(pm_code_2, program, pm_2)
+			if j1 == j2:
+				program[pm] = 1
+			else:
+				program[pm] = 0
+			pos += 4
 
 		elif ins == 99:
 			# print('decoded ins mode = 99, HALT')
 			exit(-1)
+	# print(program)
 	return program, pos
 
 # decode parameter code
@@ -137,11 +154,13 @@ def decode_pm(pmcode, program, para):
 
 # load the input
 programs = np.loadtxt('input.txt', delimiter = ',', dtype = int)
-inputs = 1
+print(programs)
+inputs = 5
 # test input = 1, air conditioner unit
 programs, i = unittest(inputs, programs[0], programs, 0)
 # test others 
-i = 0
+# i = 0
 while programs[i] != 99:
 	# print('==> i = ', i)
 	programs, i = unittest(inputs, programs[i], programs, i)
+	# time.sleep(5)

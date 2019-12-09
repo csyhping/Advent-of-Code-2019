@@ -87,7 +87,7 @@ inputs = 1
 # test input = 1, air conditioner unit
 programs, i = unittest(inputs, programs[0], programs, 0)
 # test others 
-i = 0
+# i = 0
 while programs[i] != 99:
 	# print('==> i = ', i)
 	programs, i = unittest(inputs, programs[i], programs, i)
