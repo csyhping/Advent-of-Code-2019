@@ -56,6 +56,14 @@ class SingleLinkList():
 	def is_empty(self):
 		return self.head == None
 
+	def show(self):
+		print('--[NOTE]--list show start')
+		curr = self.head
+		while curr is not None:
+			print(curr.data)
+			curr = curr.next
+		print('--[NOTE]--list show end')
+
 # # test single link list #
 # l1 = SingleLinkList()
 # l2 = SingleLinkList()
