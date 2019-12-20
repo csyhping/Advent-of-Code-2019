@@ -1,6 +1,3 @@
-A)B
-B)C
-C)D
 D)E
 E)F
 B)G
@@ -9,3 +6,6 @@ D)I
 E)J
 J)K
 K)L
+A)B
+B)C
+C)D
